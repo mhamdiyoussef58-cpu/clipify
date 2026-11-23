@@ -3,116 +3,146 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Clipify — فيديوهات فيروسية</title>
+<title>Clipify — من فيديو طويل لمقاطع فيروسية</title>
 <style>
-:root{--bg:#fafafa;--card:#fff;--ink:#111;--muted:#666;--p1:#6366f1;--p2:#a855f7;--good:#10b981;--line:#eee;--shadow:0 10px 30px rgba(0,0,0,.08)}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
-.wrap{max-width:800px;margin:auto;padding:24px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow);margin-bottom:24px}
-h1{font-size:2rem;margin-bottom:8px}h2{font-size:1.3rem;margin-bottom:16px}
-.input-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-input,button{font:inherit;padding:12px 16px;border-radius:10px;border:1px solid var(--line)}
-input{flex:1;min-width:280px;background:#fff}
-button{cursor:pointer;font-weight:600;transition:all .2s}
-.btn-primary{background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;border:none}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(99,102,241,.4)}
-.btn-outline{background:#fff;color:var(--ink)}
-.hidden{display:none}
-.clip{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px;animation:pop .4s}
-.thumb{aspect-ratio:9/16;background:linear-gradient(135deg,var(--p1),var(--p2));position:relative}
-.thumb img{width:100%;height:100%;object-fit:cover}
-.clip-body{padding:16px}
-.clip-title{font-weight:600;margin-bottom:12px}
-.clip-meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.score{width:44px;height:44px;border-radius:50%;background:conic-gradient(var(--good) calc(var(--s)*1%), #eee 0);display:grid;place-items:center}
-.score::before{content:"";width:34px;height:34px;border-radius:50%;background:#fff}
-.score span{position:relative;z-index:1;font-weight:700}
-.btn-sm{padding:8px 16px;font-size:.9rem}
-.spacer{flex:1}
-.progress-bar{height:6px;background:#eee;border-radius:99px;overflow:hidden;margin:16px 0}
-.progress-bar>div{height:100%;width:0;background:linear-gradient(90deg,var(--p1),var(--p2));transition:width .5s}
-.steps{font-size:.9rem;color:var(--muted)}.step{padding:8px 0;display:flex;gap:12px}.step.active{color:var(--ink)}.step.done{color:var(--good)}
+:root{color-scheme:light;--bg:#f7f7fc;--card:#ffffff;--ink:#0f1020;--muted:#5f6474;--line:#e7e7f0;--p1:#5b4bff;--p2:#a855f7;--good:#12b76a;--shadow:0 10px 30px rgba(23,20,80,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Segoe UI",Tahoma,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+.wrap{max-width:1120px;margin:auto;padding:0 20px}.hidden{display:none!important}
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:20px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;text-decoration:none}
+.logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--p1),var(--p2));display:grid;place-items:center;color:#fff;font-weight:700}
+.lang{margin-inline-start:auto;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:700;font-size:13px;cursor:pointer}
+.nav-cta{margin-inline-start:10px;text-decoration:none;background:var(--ink);color:#fff;padding:9px 18px;border-radius:999px;font-size:14px;font-weight:600}
+.hero{position:relative;overflow:hidden;padding:84px 0 56px;text-align:center}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;pointer-events:none}
+.b1{width:430px;height:430px;background:#c7bfff;top:-140px;right:-90px}
+.b2{width:380px;height:380px;background:#ffd3c4;bottom:-160px;left:-70px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:999px;font-size:13px;color:var(--muted);margin-bottom:20px}
+.hero h1{font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.25;margin:22px 0 16px}
+.grad{background:linear-gradient(90deg,var(--p1),var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:660px;margin:0 auto 34px;color:var(--muted);font-size:17px}
+.clipform{max-width:720px;margin:0 auto}
+.inputwrap{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px 14px;box-shadow:var(--shadow)}
+.inputwrap input{flex:1;border:0;outline:0;font:inherit;font-size:15px;min-width:0;background:transparent}
+.cta{border:0;cursor:pointer;font:inherit;font-weight:700;font-size:15px;color:#fff;background:linear-gradient(135deg,var(--p1),var(--p2));padding:12px 22px;border-radius:13px}
+.studio{position:relative;z-index:1}
+.studio{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:24px;margin:40px auto}
+.empty{text-align:center;padding:48px 20px;color:var(--muted)}
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.clip{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.thumb{position:relative;aspect-ratio:4/5;display:block}
+.thumb.v1{background:linear-gradient(135deg,#5b4bff,#8b5cf6)}
+.thumb.v2{background:linear-gradient(135deg,#0ea5e9,#22d3ee)}
+.thumb.v3{background:linear-gradient(135deg,#f43f5e,#fb923c)}
+.thumb.v4{background:linear-gradient(135deg,#10b981,#84cc16)}
+.thumb.v5{background:linear-gradient(135deg,#8b5cf6,#ec4899)}
+.thumb.v6{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.clip-b{padding:12px}
+.clip-b h4{font-size:14.5px;margin-bottom:10px}
+.mini{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:12px;cursor:pointer}
+.mini.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pricing{padding:40px 0}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px}
+.price{font-size:32px;font-weight:800;margin:8px 0}
+.tag{position:absolute;top:-12px;left:20px;background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;font-size:11px;padding:3px 12px;border-radius:999px}
+.pcard{position:relative}
 @keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media(max-width:600px){.input-row{flex-direction:column}input{min-width:0}}
+@media(max-width:920px){.res-grid{grid-template-columns:repeat(2,1fr)}.pgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.res-grid{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header style="text-align:center;margin-bottom:32px">
-    <h1>Clipify <span style="font-size:.5em;color:var(--p1)">AI</span></h1>
-    <p style="color:var(--muted)">من فيديو طويلة → مقاطع فيروسية جاهزة للنشير</p>
-  </header>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#"><span class="logo">✦</span><span data-i18n="brand">قصّها AI</span></a>
+    <button class="lang" id="langBtn">FR</button>
+    <a class="nav-cta" data-i18n="cta" href="#">جرّب دابا</a>
+  </div>
+</header>
 
-  <section class="card">
-    <h2>أدخل رابط يوتيوب أو ا.upload فيديو</h2>
-    <form id="form" class="input-row">
-      <input id="url" type="url" placeholder="https://youtube.com/watch?v=..." required>
-      <button type="submit" class="btn-primary">نشير</button>
+<section class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <span class="badge" data-i18n="badge">مدعوم بالذكاء الاصطناعي</span>
+    <h1><span data-i18n="h1_1">قصّ الفيديو.</span><br><span class="grad" data-i18n="h1_2">خلّي الترند.</span></h1>
+    <p class="lead" data-i18n="lead">حوّل أي فيديو طويل أو رابط يوتيوب لمقاطع عمودية قصيرة جاهزة للنشر فـ TikTok و Reels و Shorts.</p>
+    <form class="clipform" id="clipForm">
+      <div class="inputwrap">
+        <input id="yturl" data-i18n-placeholder="ph" placeholder="حط رابط يوتيوب هنا…">
+        <button type="submit" class="cta" data-i18n="submit">قصّ الفيديو</button>
+      </div>
     </form>
-    <p style="color:var(--muted);font-size:.9rem">أو <button type="button" id="fileBtn" class="btn-outline">ارفع من جهازك</button></p>
-    <input type="file" id="fileInput" accept="video/*" hidden>
-  </section>
+  </div>
+</section>
 
-  <section class="card hidden" id="processing">
-    <h2>جاري المعالجة…</h2>
-    <div class="progress-bar"><div id="progress"></div></div>
-    <div class="steps" id="steps"></div>
-  </section>
+<section class="studio">
+  <div class="wrap">
+    <div id="emptyState" class="empty"><h3 data-i18n="empty_t">عندك فيديو؟ هنا كيبدا القصّ</h3><p data-i18n="empty_d">حط رابط يوتيوب وفوق وغادي تشوف المقاطع جاهزة هنا.</p></div>
+    <div id="results" class="hidden"><h3 data-i18n="results_t">المقاطع ديالك جاهزة</h3><div class="res-grid" id="resGrid"></div></div>
+  </div>
+</section>
 
-  <section class="card hidden" id="results">
-    <h2> clipsك جاهزة</h2>
-    <div id="clips"></div>
-  </section>
-</div>
+<section class="pricing wrap">
+  <h2 style="text-align:center;margin-bottom:24px" data-i18n="price_t">الأسعار</h2>
+  <div class="pgrid">
+    <div class="pcard"><h3 data-i18n="p1_n">مجاني</h3><div class="price">$0</div><p data-i18n="p1_d">3 فيديوهات/شهر - 720p</p></div>
+    <div class="pcard"><span class="tag" data-i18n="pop">الأكثر طلباً</span><h3 data-i18n="p2_n">Pro</h3><div class="price">$19<span style="font-size:14px">/month</span></div><p data-i18n="p2_d">60 دقيقة/شهر - 1080p بدون علامة مائية</p></div>
+    <div class="pcard"><h3 data-i18n="p3_n">Agency</h3><div class="price">$49<span style="font-size:14px">/month</span></div><p data-i18n="p3_d">غير محدود تقريباً - 5 حسابات</p></div>
+  </div>
+</section>
 
 <script>
-const $ = s => document.querySelector(s);
-const form = $('#form'), url = $('#url'), fileBtn = $('#fileBtn'), fileInput = $('#fileInput');
-const processing = $('#processing'), results = $('#results'), clips = $('#clips'), progress = $('#progress'), stepsEl = $('#steps');
-
-const STEPS = [
-  {label:"حمّل الفيديو", dur:1000},
-  {label:"حلّل الصوت والكلام", dur:1400},
-  {label:"اختار اللحظات القوية", dur:1600},
-  {label:"قصّ 9:16 بالترجمة", dur:900}
-];
-
-fileBtn.onclick = () => fileInput.click();
-fileInput.onchange = () => { if(fileInput.files[0]) url.value = fileInput.files[0].name; form.dispatchEvent(new Event('submit')); };
-
-form.onsubmit = async e => {
-  e.preventDefault();
-  if(!url.value.trim()) return;
-  
-  form.classList.add('hidden');
-  processing.classList.remove('hidden');
-  results.classList.add('hidden');
-  
-  stepsEl.innerHTML = STEPS.map((s,i)=>`<div class="step" id="step${i}">⏳ ${s.label}</div>`).join('');
-  progress.style.width = '0%';
-  
-  for(let i=0;i<STEPS.length;i++){
-    const el = document.getElementById(`step${i}`);
-    el.className = 'step active'; el.innerHTML = `🔄 ${STEPS[i].label}`;
-    progress.style.width = `${Math.round((i+1)/STEPS.length*100)}%`;
-    await new Promise(r=>setTimeout(r, STEPS[i].dur));
-    el.className = 'step done'; el.innerHTML = `✅ ${STEPS[i].label}`;
-  }
-  
-  const demo = [
-    {title:"اللحظة التي تغير كل شيء", dur:"0:42", score:96, thumb:"https://picsum.photos/seed/c1/360/640"},
-    {title:"3 حيل لمضاعفة نتائجك", dur:"1:01", score:91, thumb:"https://picsum.photos/seed/c2/360/640"},
-    {title:"السر الذي يhiddenه عنك", dur:"0:37", score:88, thumb:"https://picsum.photos/seed/c3/360/640"},
-    {title:"الخطأ الذي يرتكبه جميعاً", dur:"0:29", score:84, thumb:"https://picsum.photos/seed/c4/360/640"},
-    {title:"رد صادم على سؤال بسيط", dur:"0:51", score:79, thumb:"https://picsum.photos/seed/c5/360/640"},
-    {title:"نصيحة ستغير حياتك", dur:"0:58", score:75, thumb:"https://picsum.photos/seed/c6/360/640"}
-  ];
-  
-  clips.innerHTML = demo.map((c,i)=>`<article class="clip" style="animation-delay:${i*80}ms"><div class="thumb"><img src="${c.thumb}" alt=""><span style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.4);color:#fff;padding:2px 8px;border-radius:99px;font-size:.7rem">9:16</span></div><div class="clip-body"><h3 class="clip-title">${c.title}</h3><div class="clip-meta"><div class="score" style="--s:${c.score}"><span>${c.score}</span></div><span style="color:var(--muted);font-size:.75rem">فيروسية</span><span class="spacer"></span><button class="btn-sm btn-outline">حمّل</button><button class="btn-sm btn-primary">نشير</button></div></div></article>`).join('');
-  
-  processing.classList.add('hidden');
-  results.classList.remove('hidden');
+const dict={
+ ar:{
+  brand:'قصّها AI',cta:'جرّب دابا',badge:'مدعوم بالذكاء الاصطناعي',
+  h1_1:'قصّ الفيديو.',h1_2:'خلّي الترند.',lead:'حوّل أي فيديو طويل أو رابط يوتيوب لمقاطع عمودية قصيرة جاهزة للنشر فـ TikTok و Reels و Shorts.',
+  ph:'حط رابط يوتيوب هنا…',submit:'قصّ الفيديو',
+  empty_t:'عندك فيديو؟ هنا كيبدا القصّ',empty_d:'حط رابط يوتيوب وفوق وغادي تشوف المقاطع جاهزة هنا.',
+  results_t:'المقاطع ديالك جاهزة',price_t:'الأسعار',
+  p1_n:'مجاني',p1_d:'3 فيديوهات/شهر - 720p',
+  p2_n:'Pro',p2_d:'60 دقيقة/شهر - 1080p بدون علامة مائية',
+  p3_n:'Agency',p3_d:'غير محدود تقريباً - 5 حسابات',
+  pop:'الأكثر طلباً'
+ },
+ fr:{
+  brand:'Clipify AI',cta:'Essayer maintenant',badge:'Propulsé par l\'IA',
+  h1_1:'Découpez vos vidéos.',h1_2:'Devenez viral.',lead:'Transformez n\'importe quelle vidéo longue ou lien YouTube en clips verticaux prêts pour TikTok, Reels et Shorts.',
+  ph:'Collez un lien YouTube…',submit:'Générer les clips',
+  empty_t:'Vous avez une vidéo ? C\'est ici que ça commence',empty_d:'Collez un lien YouTube ci-dessus et vos clips apparaîtront ici.',
+  results_t:'Vos clips sont prêts',price_t:'Tarifs',
+  p1_n:'Gratuit',p1_d:'3 vidéos/mois - 720p',
+  p2_n:'Pro',p2_d:'60 min/mois - 1080p sans filigrane',
+  p3_n:'Agence',p3_d:'Quasi illimité - 5 comptes',
+  pop:'Le plus choisi'
+ }
 };
+let lang=localStorage.getItem('lang')||'ar';
+function apply(){
+  document.documentElement.lang=lang;
+  document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.getElementById('langBtn').textContent=lang.toUpperCase();
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(dict[lang][k])el.textContent=dict[lang][k];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    el.placeholder=dict[lang].ph;
+  });
+}
+document.getElementById('langBtn').onclick=()=>{lang=lang==='ar'?'fr':'ar';localStorage.setItem('lang',lang);apply();};
+apply();
+</script>
+
+<script>
+const clips=[{t:{ar:'اللحظة اللي قلبت كلشي',fr:'Le moment qui change tout'},v:'v3',s:96},{t:{ar:'نصيحة غادي تبدل حياتك',fr:'Conseil qui change votre vie'},v:'v1',s:91},{t:{ar:'السر اللي كيخبيوه عليك',fr:'Le secret qu\'on vous cache'},v:'v5',s:88},{t:{ar:'3 خطوات باش تضاعف النتيجة',fr:'3 étapes pour doubler les résultats'},v:'v2',s:84},{t:{ar:'الغلط اللي كيديروه الجميع',fr:'L\'erreur que tout le monde fait'},v:'v4',s:79},{t:{ar:'جواب صادم على سؤال بسيط',fr:'Réponse choc à une question simple'},v:'v6',s:75}];
+document.getElementById('clipForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('emptyState').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+  document.getElementById('resGrid').innerHTML=clips.map(c=>`<article class="clip"><div class="thumb ${c.v}"></div><div class="clip-b"><h4>${c.t[lang]}</h4><button class="mini">Download</button><button class="mini dark">Publish</button></div></article>`).join('');
+});
 </script>
 </body>
 </html>
