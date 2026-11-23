@@ -3,127 +3,144 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Clipify — من فيديو طويل لمقاطع فيروسية</title>
+<title>Clipify — محرر فيديو بـ الذكاء الاصطناعي</title>
 <style>
-:root{color-scheme:light;--bg:#f7f7fc;--card:#ffffff;--ink:#0f1020;--muted:#5f6474;--line:#e7e7f0;--p1:#5b4bff;--p2:#a855f7;--good:#12b76a;--shadow:0 10px 30px rgba(23,20,80,.08)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Segoe UI",Tahoma,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
-.wrap{max-width:1120px;margin:auto;padding:0 20px}.hidden{display:none!important}
-.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.nav-in{display:flex;align-items:center;gap:20px;height:64px}
+:root{color-scheme:dark;--bg:#050507;--ink:#e8e8ee;--muted:#9aa0a6;--line:#1b1f24;--p1:#6d7aff;--p2:#a855f7;--good:#10b981;--card:#0a0c10}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1180px;margin:auto;padding:0 24px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(5,5,7,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;height:68px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;text-decoration:none}
-.logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--p1),var(--p2));display:grid;place-items:center;color:#fff;font-weight:700}
-.lang{margin-inline-start:auto;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:700;font-size:13px;cursor:pointer}
-.nav-cta{margin-inline-start:10px;text-decoration:none;background:var(--ink);color:#fff;padding:9px 18px;border-radius:999px;font-size:14px;font-weight:600}
-.hero{position:relative;overflow:hidden;padding:84px 0 56px;text-align:center}
-.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;pointer-events:none}
-.b1{width:430px;height:430px;background:#c7bfff;top:-140px;right:-90px}
-.b2{width:380px;height:380px;background:#ffd3c4;bottom:-160px;left:-70px}
-.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:999px;font-size:13px;color:var(--muted);margin-bottom:20px}
-.hero h1{font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.25;margin:22px 0 16px}
-.grad{background:linear-gradient(90deg,var(--p1),var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{max-width:660px;margin:0 auto 34px;color:var(--muted);font-size:17px}
-.clipform{max-width:720px;margin:0 auto}
-.inputwrap{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px 14px;box-shadow:var(--shadow)}
-.inputwrap input{flex:1;border:0;outline:0;font:inherit;font-size:15px;min-width:0;background:transparent}
-.cta{border:0;cursor:pointer;font:inherit;font-weight:700;font-size:15px;color:#fff;background:linear-gradient(135deg,var(--p1),var(--p2));padding:12px 22px;border-radius:13px}
-.studio{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:24px;margin:40px auto}
-.empty{text-align:center;padding:48px 20px;color:var(--muted)}
-.steps{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}
-.step{flex:1;min-width:200px;background:#f8f8fd;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px}
-.step.active{border-color:var(--p1);background:#f1efff}
-.step.done{border-color:var(--good);background:#eafff5}
-.barwrap{height:8px;background:#edecf6;border-radius:99px;margin:20px 0;overflow:hidden}
-.bar{height:100%;width:0;background:linear-gradient(90deg,var(--p1),var(--p2));transition:width .4s}
+.logo{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--p1),var(--p2));display:grid;place-items:center;color:#fff;font-weight:800}
+.nav-links{display:flex;gap:28px;margin-inline-start:40px}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500}
+.nav-right{margin-inline-start:auto;display:flex;align-items:center;gap:14px}
+.lang{background:#0f1216;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink)}
+.btn-ghost{border:1px solid var(--line);background:#0f1216;border-radius:999px;padding:8px 16px;font-weight:600;font-size:13px}
+.btn-primary{background:#fff;color:#000;border-radius:999px;padding:10px 20px;font-weight:700;font-size:14px;border:0}
+.hero{padding:96px 0 80px;text-align:center;position:relative;overflow:hidden}
+.eyebrow{color:var(--muted);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.hero h1{font-size:clamp(2.6rem,6vw,4.4rem);font-weight:800;line-height:1.1;margin:12px 0 18px;letter-spacing:-.02em}
+.underline{display:inline-block;background:linear-gradient(90deg,var(--p1),var(--p2));padding:4px 18px;border-radius:999px;margin:0 10px}
+.sub{max-width:720px;margin:24px auto 36px;color:var(--muted);font-size:17px}
+.searchbar{display:flex;align-items:center;gap:0;max-width:720px;margin:0 auto;background:#0f1216;border:1px solid var(--line);border-radius:999px;padding:6px 6px 6px 20px}
+.searchbar input{flex:1;background:transparent;border:0;outline:0;color:var(--ink);font-size:15px}
+.searchbar .or{color:var(--muted);font-size:14px;margin:0 10px}
+.btn-pill{background:#fff;color:#000;border-radius:999px;padding:12px 24px;font-weight:700;border:0;cursor:pointer}
+.features{padding:80px 0}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card h3{font-size:16px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:14px}
+.pricing{padding:80px 0}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;position:relative}
+.pcard.popular{border-color:var(--p1);box-shadow:0 0 0 1px var(--p1) inset}
+.tag{position:absolute;top:-12px;left:20px;background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;font-size:11px;padding:4px 12px;border-radius:999px;font-weight:700}
+.price{font-size:34px;font-weight:800;margin:10px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:100}
+.modal-card{background:#0f1216;border:1px solid var(--line);border-radius:16px;padding:28px;width:90%;max-width:420px}
+.modal input{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:12px;background:#050507;color:var(--ink)}
+.modal button{width:100%;padding:12px;border:0;border-radius:10px;background:#fff;color:#000;font-weight:700;cursor:pointer}
+.studio{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin:40px auto}
+.steps{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.step{flex:1;min-width:180px;background:#0f1216;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px}
+.step.active{border-color:var(--p1)}
+.step.done{border-color:var(--good)}
 .res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
-.clip{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
-.thumb{position:relative;aspect-ratio:4/5;display:block}
-.thumb.v1{background:linear-gradient(135deg,#5b4bff,#8b5cf6)}
-.thumb.v2{background:linear-gradient(135deg,#0ea5e9,#22d3ee)}
-.thumb.v3{background:linear-gradient(135deg,#f43f5e,#fb923c)}
-.thumb.v4{background:linear-gradient(135deg,#10b981,#84cc16)}
-.thumb.v5{background:linear-gradient(135deg,#8b5cf6,#ec4899)}
-.thumb.v6{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.clip{background:#0f1216;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.thumb{aspect-ratio:9/16;background:linear-gradient(135deg,var(--p1),var(--p2))}
 .clip-b{padding:12px}
-.clip-b h4{font-size:14.5px;margin-bottom:10px}
-.clip-meta{display:flex;align-items:center;gap:8px}
-.ring{--s:90;width:44px;height:44px;border-radius:50%;background:conic-gradient(var(--good) calc(var(--s)*1%), #ececf5 0);display:grid;place-items:center;flex:0 0 auto}
-.ring span{width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
-.mini{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:12px;cursor:pointer}
-.mini.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:100}
-.modal-card{background:#fff;border-radius:16px;padding:24px;width:90%;max-width:400px}
-.modal h3{margin-bottom:16px}
-.modal input{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:12px}
-.modal button{width:100%;padding:12px;border:0;border-radius:10px;background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;font-weight:700;cursor:pointer}
-.pricing{padding:40px 0}
-.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.pcard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;position:relative}
-.price{font-size:32px;font-weight:800;margin:8px 0}
-@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media(max-width:920px){.res-grid{grid-template-columns:repeat(2,1fr)}.pgrid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.res-grid{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr}.step{min-width:100%}}
+.clip-b h4{font-size:14px;margin:0 0 8px}
+.score{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--good)}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.fade{animation:fade .5s both}
+@media(max-width:920px){.grid-3,.pgrid,.res-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:560px){.grid-3,.pgrid,.res-grid{grid-template-columns:1fr}.steps{flex-direction:column}}
 </style>
 </head>
 <body>
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="#"><span class="logo">✦</span><span data-i18n="brand">قصّها AI</span></a>
-    <button class="lang" id="langBtn">FR</button>
-    <a class="nav-cta" id="loginBtn" data-i18n="cta" href="#">دخول</a>
+    <a class="brand" href="#"><span class="logo">C</span><span data-i18n="brand">Clipify</span></a>
+    <nav class="nav-links"><a data-i18n="f1" href="#">الميزات</a><a data-i18n="f2" href="#">الحلول</a><a data-i18n="f3" href="#">الأسعار</a></nav>
+    <div class="nav-right">
+      <button class="lang" id="langBtn">FR</button>
+      <button class="btn-ghost" id="loginBtn" data-i18n="login">تسجيل الدخول</button>
+      <button class="btn-primary" id="signupBtn" data-i18n="signup">إنشاء حساب مجاني</button>
+    </div>
   </div>
 </header>
 
 <section class="hero">
-  <div class="blob b1"></div><div class="blob b2"></div>
   <div class="wrap">
-    <span class="badge" data-i18n="badge">مدعوم بالذكاء الاصطناعي</span>
-    <h1><span data-i18n="h1_1">قصّ الفيديو.</span><br><span class="grad" data-i18n="h1_2">خلّي الترند.</span></h1>
-    <p class="lead" data-i18n="lead">حوّل أي فيديو طويل أو رابط يوتيوب لمقاطع عمودية قصيرة جاهزة للنشر فـ TikTok و Reels و Shorts.</p>
-    <form class="clipform" id="clipForm">
-      <div class="inputwrap">
-        <input id="yturl" data-i18n-placeholder="ph" placeholder="حط رابط يوتيوب هنا…">
-        <button type="submit" class="cta" data-i18n="submit">قصّ الفيديو</button>
-      </div>
-    </form>
+    <div class="eyebrow" data-i18n="eyebrow">#1 AI VIDEO EDITOR AND CLIPPING TOOL</div>
+    <h1><span data-i18n="h1a">تحويل أي لقطة إلى</span><br><span class="underline" data-i18n="h1b">presence علامة تجارية</span> <span data-i18n="h1c">10x أسرع</span></h1>
+    <p class="sub" data-i18n="sub">الصق رابط أو ارفع ملف خام، وClipify يقص ويعدل ويحجم وينشر على كل المنصات بنقرة واحدة.</p>
+    <div class="searchbar">
+      <input id="yturl" data-i18n-placeholder="ph" placeholder="Drop a video link or upload a file">
+      <span class="or" data-i18n="or">أو</span>
+      <button class="btn-pill" id="getClips" data-i18n="get">احصل على مقاطع مجانية</button>
+      <span class="or" data-i18n="or2">أو</span>
+      <button class="btn-ghost" data-i18n="auto">Auto-edit</button>
+    </div>
+  </div>
+</section>
+
+<section class="features wrap">
+  <div class="grid-3">
+    <div class="card"><h3 data-i18n="feat1_t">قص ذكي</h3><p data-i18n="feat1_d">ذكاء اصطناعي يختار اللحظات القوية تلقائياً.</p></div>
+    <div class="card"><h3 data-i18n="feat2_t">ترجمة متحركة</h3><p data-i18n="feat2_d">سبتايتل ملونة متزامنة مع الصوت.</p></div>
+    <div class="card"><h3 data-i18n="feat3_t">نشر فوري</h3><p data-i18n="feat3_d">تصدير 9:16 جاهز للـ TikTok وReels وShorts.</p></div>
   </div>
 </section>
 
 <section class="studio wrap">
-  <div id="emptyState" class="empty"><h3 data-i18n="empty_t">عندك فيديو؟ هنا كيبدا القصّ</h3><p data-i18n="empty_d">حط رابط يوتيوب وفوق وغادي تشوف المقاطع جاهزة هنا.</p></div>
-  <div id="processing" class="hidden"><h3 data-i18n="proc_t">جاري المعالجة…</h3><div class="barwrap"><div class="bar" id="bar"></div></div><div class="steps" id="steps"></div></div>
-  <div id="results" class="hidden"><h3 data-i18n="results_t">المقاطع ديالك جاهزة</h3><div class="res-grid" id="resGrid"></div></div>
+  <div id="emptyState"><h3 data-i18n="empty_t">جاهز للبدء؟</h3><p data-i18n="empty_d">أدخل رابط أو ارفع فيديو للبدء.</p></div>
+  <div id="processing" class="hidden"><h3 data-i18n="proc_t">جاري المعالجة…</h3><div class="steps" id="steps"></div></div>
+  <div id="results" class="hidden"><h3 data-i18n="results_t">مقاطعك جاهزة</h3><div class="res-grid" id="resGrid"></div></div>
 </section>
 
 <section class="pricing wrap">
   <h2 style="text-align:center;margin-bottom:24px" data-i18n="price_t">الأسعار</h2>
   <div class="pgrid">
     <div class="pcard"><h3 data-i18n="p1_n">مجاني</h3><div class="price">$0</div><p data-i18n="p1_d">3 فيديوهات/شهر - 720p</p></div>
-    <div class="pcard"><h3 data-i18n="p2_n">Pro</h3><div class="price">$19<span style="font-size:14px">/month</span></div><p data-i18n="p2_d">60 دقيقة/شهر - 1080p بدون علامة مائية</p></div>
+    <div class="pcard popular"><span class="tag" data-i18n="pop">الأكثر طلباً</span><h3 data-i18n="p2_n">Pro</h3><div class="price">$19<span style="font-size:14px">/month</span></div><p data-i18n="p2_d">60 دقيقة/شهر - 1080p بدون علامة مائية</p></div>
     <div class="pcard"><h3 data-i18n="p3_n">Agency</h3><div class="price">$49<span style="font-size:14px">/month</span></div><p data-i18n="p3_d">غير محدود تقريباً - 5 حسابات</p></div>
   </div>
 </section>
 
-<div id="loginModal" class="modal hidden"><div class="modal-card"><h3 data-i18n="login_t">تسجيل الدخول</h3><input type="email" placeholder="البريد الإلكتروني"><input type="password" placeholder="كلمة المرور"><button data-i18n="login_b">دخول</button><p style="text-align:center;margin-top:12px;font-size:13px;color:var(--muted)" data-i18n="login_or">أو <a href="#" id="closeLogin">إلغاء</a></p></div></div>
+<div id="loginModal" class="modal hidden"><div class="modal-card"><h3 data-i18n="login_t">تسجيل الدخول مطلوب</h3><p data-i18n="login_d">لإنشاء المقاطع يجب تسجيل الدخول أو إنشاء حساب مجاني.</p><input type="email" placeholder="البريد الإلكتروني"><input type="password" placeholder="كلمة المرور"><button data-i18n="login_b">دخول</button><p style="text-align:center;margin-top:12px;font-size:13px;color:var(--muted)" data-i18n="login_or">أو <a href="#" id="closeLogin">إلغاء</a></p></div></div>
 
 <script>
 const dict={
  ar:{
-  brand:'قصّها AI',cta:'دخول',badge:'مدعوم بالذكاء الاصطناعي',
-  h1_1:'قصّ الفيديو.',h1_2:'خلّي الترند.',lead:'حوّل أي فيديو طويل أو رابط يوتيوب لمقاطع عمودية قصيرة جاهزة للنشر فـ TikTok و Reels و Shorts.',
-  ph:'حط رابط يوتيوب هنا…',submit:'قصّ الفيديو',
-  empty_t:'عندك فيديو؟ هنا كيبدا القصّ',empty_d:'حط رابط يوتيوب وفوق وغادي تشوف المقاطع جاهزة هنا.',
-  proc_t:'جاري المعالجة…',results_t:'المقاطع ديالك جاهزة',price_t:'الأسعار',
+  brand:'Clipify',f1:'الميزات',f2:'الحلول',f3:'الأسعار',login:'تسجيل الدخول',signup:'إنشاء حساب مجاني',
+  eyebrow:'#1 AI VIDEO EDITOR AND CLIPPING TOOL',
+  h1a:'تحويل أي لقطة إلى',h1b:'presence علامة تجارية',h1c:'10x أسرع',
+  sub:'الصق رابط أو ارفع ملف خام، وClipify يقص ويعدل ويحجم وينشر على كل المنصات بنقرة واحدة.',
+  ph:'أضف رابط فيديو أو ارفع ملف',or:'أو',get:'احصل على مقاطع مجانية',auto:'Auto-edit',
+  feat1_t:'قص ذكي',feat1_d:'ذكاء اصطناعي يختار اللحظات القوية تلقائياً.',
+  feat2_t:'ترجمة متحركة',feat2_d:'سبتايتل ملونة متزامنة مع الصوت.',
+  feat3_t:'نشر فوري',feat3_d:'تصدير 9:16 جاهز للـ TikTok وReels وShorts.',
+  empty_t:'جاهز للبدء؟',empty_d:'أدخل رابط أو ارفع فيديو للبدء.',
+  proc_t:'جاري المعالجة…',results_t:'مقاطعك جاهزة',price_t:'الأسعار',
   p1_n:'مجاني',p1_d:'3 فيديوهات/شهر - 720p',p2_n:'Pro',p2_d:'60 دقيقة/شهر - 1080p بدون علامة مائية',p3_n:'Agency',p3_d:'غير محدود تقريباً - 5 حسابات',
-  login_t:'تسجيل الدخول',login_b:'دخول',login_or:'أو إلغاء'
+  pop:'الأكثر طلباً',login_t:'تسجيل الدخول مطلوب',login_d:'لإنشاء المقاطع يجب تسجيل الدخول أو إنشاء حساب مجاني.',login_b:'دخول',login_or:'أو إلغاء'
  },
  fr:{
-  brand:'Clipify AI',cta:'Connexion',badge:'Propulsé par l\'IA',
-  h1_1:'Découpez vos vidéos.',h1_2:'Devenez viral.',lead:'Transformez n\'importe quelle vidéo longue ou lien YouTube en clips verticaux prêts pour TikTok, Reels et Shorts.',
-  ph:'Collez un lien YouTube…',submit:'Générer les clips',
-  empty_t:'Vous avez une vidéo ? C\'est ici que ça commence',empty_d:'Collez un lien YouTube ci-dessus et vos clips apparaîtront ici.',
+  brand:'Clipify',f1:'Fonctionnalités',f2:'Solutions',f3:'Tarifs',login:'Se connecter',signup:'S\'inscrire gratuitement',
+  eyebrow:'#1 AI VIDEO EDITOR AND CLIPPING TOOL',
+  h1a:'Transformez n\'importe quel footage en',h1b:'brand presence',h1c:'10x plus vite',
+  sub:'Collez un lien ou déposez une vidéo brute, Clipify découpe, édite, redimensionne et publie sur tous les réseaux en un clic.',
+  ph:'Collez un lien vidéo ou téléversez un fichier',or:'ou',get:'Obtenir des clips gratuits',auto:'Auto-edit',
+  feat1_t:'Découpage intelligent',feat1_d:'IA qui sélectionne automatiquement les meilleurs moments.',
+  feat2_t:'Sous-titres animés',feat2_d:'Sous-titres colorés synchronisés avec l\'audio.',
+  feat3_t:'Publication instantanée',feat3_d:'Export 9:16 prêt pour TikTok, Reels et Shorts.',
+  empty_t:'Prêt à commencer ?',empty_d:'Entrez un lien ou téléversez une vidéo pour démarrer.',
   proc_t:'Traitement en cours…',results_t:'Vos clips sont prêts',price_t:'Tarifs',
   p1_n:'Gratuit',p1_d:'3 vidéos/mois - 720p',p2_n:'Pro',p2_d:'60 min/mois - 1080p sans filigrane',p3_n:'Agence',p3_d:'Quasi illimité - 5 comptes',
-  login_t:'Connexion',login_b:'Se connecter',login_or:'ou Annuler'
+  pop:'Le plus choisi',login_t:'Connexion requise',login_d:'Pour générer des clips, connectez-vous ou créez un compte gratuit.',login_b:'Se connecter',login_or:'ou Annuler'
  }
 };
 let lang=localStorage.getItem('lang')||'ar';
@@ -142,42 +159,34 @@ apply();
 </script>
 
 <script>
-const steps=[
- {ar:'تحميل الفيديو',fr:'Téléchargement'},
- {ar:'تحليل الصوت والكلام',fr:'Analyse audio'},
- {ar:'اختيار اللحظات القوية',fr:'Sélection des hooks'},
- {ar:'القصّ والترجمة 9:16',fr:'Découpage 9:16'}
-];
-const clips=[
- {t:{ar:'اللحظة اللي قلبت كلشي',fr:'Le moment qui change tout'},v:'v3',s:96},
- {t:{ar:'نصيحة غادي تبدل حياتك',fr:'Conseil qui change votre vie'},v:'v1',s:91},
- {t:{ar:'السر اللي كيخبيوه عليك',fr:'Le secret qu\'on vous cache'},v:'v5',s:88},
- {t:{ar:'3 خطوات باش تضاعف النتيجة',fr:'3 étapes pour doubler les résultats'},v:'v2',s:84},
- {t:{ar:'الغلط اللي كيديروه الجميع',fr:'L\'erreur que tout le monde fait'},v:'v4',s:79},
- {t:{ar:'جواب صادم على سؤال بسيط',fr:'Réponse choc à une question simple'},v:'v6',s:75}
-];
-let currentLang='ar';
-document.getElementById('langBtn').onclick=()=>{currentLang=currentLang==='ar'?'fr':'ar';};
 document.getElementById('loginBtn').onclick=()=>{document.getElementById('loginModal').classList.remove('hidden');};
+document.getElementById('signupBtn').onclick=()=>{document.getElementById('loginModal').classList.remove('hidden');};
 document.getElementById('closeLogin').onclick=()=>{document.getElementById('loginModal').classList.add('hidden');};
-document.getElementById('clipForm').addEventListener('submit',async e=>{
-  e.preventDefault();
+let logged=false;
+function requireLogin(){
+  if(!logged){document.getElementById('loginModal').classList.remove('hidden');return false;}
+  return true;
+}
+document.getElementById('getClips').onclick=()=>{
+  if(!requireLogin())return;
   document.getElementById('emptyState').classList.add('hidden');
   document.getElementById('results').classList.add('hidden');
   document.getElementById('processing').classList.remove('hidden');
+  const steps=[
+    {ar:'تحميل الفيديو',fr:'Téléchargement'},
+    {ar:'تحليل الصوت والكلام',fr:'Analyse audio'},
+    {ar:'اختيار اللحظات القوية',fr:'Sélection des hooks'},
+    {ar:'القصّ والترجمة 9:16',fr:'Découpage 9:16'}
+  ];
   const stepsEl=document.getElementById('steps');
-  stepsEl.innerHTML=steps.map((s,i)=>`<div class="step" id="st${i}">${s[currentLang]}</div>`).join('');
-  for(let i=0;i<steps.length;i++){
+  stepsEl.innerHTML=steps.map((s,i)=>`<div class="step" id="st${i}">${s[lang]}</div>`).join('');
+  let i=0;
+  const t=setInterval(()=>{
+    if(i>=steps.length){clearInterval(t);document.getElementById('processing').classList.add('hidden');document.getElementById('results').classList.remove('hidden');document.getElementById('resGrid').innerHTML='<div class="clip"><div class="thumb"></div><div class="clip-b"><h4>'+(lang==='ar'?'مقطع جاهز':'Clip prêt')+'</h4><span class="score">Score 92</span></div></div>'.repeat(6);return;}
     document.getElementById('st'+i).classList.add('active');
-    document.getElementById('bar').style.width=((i+1)/steps.length*100)+'%';
-    await new Promise(r=>setTimeout(r,800));
-    document.getElementById('st'+i).classList.remove('active');
-    document.getElementById('st'+i).classList.add('done');
-  }
-  document.getElementById('processing').classList.add('hidden');
-  document.getElementById('results').classList.remove('hidden');
-  document.getElementById('resGrid').innerHTML=clips.map(c=>`<article class="clip"><div class="thumb ${c.v}"></div><div class="clip-b"><h4>${c.t[currentLang]}</h4><div class="clip-meta"><div class="ring" style="--s:${c.s}"><span>${c.s}</span></div><button class="mini">Download</button><button class="mini dark">Publish</button></div></div></article>`).join('');
-});
+    setTimeout(()=>{document.getElementById('st'+i).classList.remove('active');document.getElementById('st'+i).classList.add('done');i++;},800);
+  },900);
+};
 </script>
 </body>
 </html>
